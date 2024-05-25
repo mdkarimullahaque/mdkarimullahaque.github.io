@@ -4,7 +4,7 @@ I am a [Post Graduate](https://math.iitm.ac.in/student/program/1#:~:text=21,MA23
 # ☎️ Contact Information
 + [Book an appointment](https://calendly.com/mdkarimullahaque/appointment)
 + [📧 Email](mailto:ma23c021@smail.iitm.ac.in)
-+ [🌐 Website](https://sites.google.com/mdkarimullahaque)
++ [🌐 Website](https://sites.google.com/view/mdkarimullahaque)
 + [🔗 LinkedIn](https://in.linkedin.com/in/mdkarimullahaque)
 # Honors and Reward
 + [Teachmint Gold Educator Award](https://blog.teachmint.com/teachmint-teacher-recognition-program/): for completing 500 hours of live online teaching on Teachmint, 2022.
