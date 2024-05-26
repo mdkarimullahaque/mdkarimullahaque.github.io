@@ -1,4 +1,5 @@
-<link rel="shortcut icon" type="image/png" href="[favicon.png](https://mdkarimullahaque.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F6b5cca19-f8a2-4927-a87b-82d7b6cb3b26%2F11cae5cc-395e-4a82-942e-a1f430e77c58%2FPicsart_23-11-02_20-36-13-595.png?table=block&id=3853607f-d02e-44a7-84e9-61efcea18bae&spaceId=6b5cca19-f8a2-4927-a87b-82d7b6cb3b26&width=250&userId=&cache=v2)">
+
+<link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://mdkarimullahaque.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F6b5cca19-f8a2-4927-a87b-82d7b6cb3b26%2F11cae5cc-395e-4a82-942e-a1f430e77c58%2FPicsart_23-11-02_20-36-13-595.png?table=block&id=3853607f-d02e-44a7-84e9-61efcea18bae&spaceId=6b5cca19-f8a2-4927-a87b-82d7b6cb3b26&width=250&userId=&cache=v2">
 
 ![MD Karimulla Haque](https://mdkarimullahaque.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F6b5cca19-f8a2-4927-a87b-82d7b6cb3b26%2F11cae5cc-395e-4a82-942e-a1f430e77c58%2FPicsart_23-11-02_20-36-13-595.png?table=block&id=3853607f-d02e-44a7-84e9-61efcea18bae&spaceId=6b5cca19-f8a2-4927-a87b-82d7b6cb3b26&width=250&userId=&cache=v2)
 # About me
