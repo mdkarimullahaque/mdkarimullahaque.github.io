@@ -90,7 +90,7 @@
 <hr>
 <div id="content">
 <div class="container">
-    <h2 id="about-me">About Me</h2>
+    <h id="about-me">About Me</h>
 <figure class="avatar"><img src="/avatar.jpg"
          alt="avatar"/>
 </figure>
@@ -117,15 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const day = String(lastModified.getDate()).padStart(2, '0');
       const month = String(lastModified.getMonth() + 1).padStart(2, '0');
       const year = String(lastModified.getFullYear()).slice(-2);
-      const hours = lastModified.getHours();
-      const minutes = String(lastModified.getMinutes()).padStart(2, '0');
       
-      
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-      const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
-      
-      const formattedDateTime = `${day}.${month}.${year} ${formattedTime}`;
+      const formattedDateTime = `${day}.${month}.${year}`;
       
       const lastUpdatedElement = document.getElementById('lastUpdated');
       lastUpdatedElement.innerText = 'Last Updated: ' + formattedDateTime;
@@ -151,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <p id="lastUpdated"><small></small></p>
 	<div class="container text-center">
-	<p>©️ MD Karimulla Haque</p>
+	<p><a href="https://mdkarimullahaque.github.io"></a>©️ MD Karimulla Haque</p>
         </div>
     
 
