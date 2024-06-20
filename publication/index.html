@@ -86,18 +86,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const day = String(lastModified.getDate()).padStart(2, '0');
       const month = String(lastModified.getMonth() + 1).padStart(2, '0');
       const year = String(lastModified.getFullYear()).slice(-2);
-      const hours = lastModified.getHours();
-      const minutes = String(lastModified.getMinutes()).padStart(2, '0');
       
-      
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-      const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
-      
-      const formattedDateTime = `${day}.${month}.${year} ${formattedTime}`;
+      const formattedDateTime = `${day}.${month}.${year}`;
       
       const lastUpdatedElement = document.getElementById('lastUpdated');
       lastUpdatedElement.innerText = 'Last Updated: ' + formattedDateTime;
+
     });
   </script>
 
@@ -119,7 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="https://mdkarimullahaque.github.io" title="" ><small></small></a>
         <div class="container text-center">
 
-  <p id="lastUpdated"><small></small></p>
+  <p id="lastUpdated"><small></small></p>3
+            <div class="container text-center">
+	<p><a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a></p>
         </div>
     
 
