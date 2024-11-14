@@ -6,15 +6,52 @@
     <title>MD Karimulla Haque: Honors and Reward</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://mdkarimullahaque.github.io/favicon.png">
     <meta name="description" content="A simple monospaced resume theme for Hugo.">
-    <meta name="author" content='MD Karimulla Haque'>
-
+    <meta name="author" content="MD Karimulla Haque">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/saas/researcher.min.css">
+    
+    <style>
+        /* Default Light Theme */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #2e3440;
+        }
+        /* Dark Theme */
+        body.dark-mode {
+            background-color: #2e3440;
+            color: #d8dee9;
+        }
+        /* Dark Theme Adjustments for Links, Navbar, and Footer */
+        body.dark-mode .navbar, body.dark-mode #footer {
+            background-color: #4c566a;
+        }
+        body.dark-mode a, body.dark-mode .nav-link {
+            color: #88c0d0;
+        }
+        body.dark-mode a:hover, body.dark-mode .nav-link:hover {
+            color: #eceff4;
+        }
+        /* Theme Toggle Button Styling */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="light-mode">
+    <!-- Theme Toggle Button in the Top-Right Corner -->
+    <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+
     <div class="container mt-5">
         <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
             <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque">
@@ -28,8 +65,6 @@
                 <a class="nav-item nav-link" href="/Awards" title="Honors and Reward">Honors and Reward</a>
                 <span class="nav-item navbar-text mx-1">/</span>
                 <a class="nav-item nav-link" href="/contact" title="Contact">Contact</a>
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="btn btn-link nav-item nav-link" onclick="toggleTheme()">🌙</button>
             </div>
         </nav>
     </div>
@@ -37,12 +72,26 @@
 
     <div id="content">
         <div class="container">
-            <p>&rarr; <a href="https://blog.teachmint.com/teachmint-teacher-recognition-program/">Teachmint Gold Educator Award</a>: for completing 500 hours of live online teaching in Teachmint, 2022.<p/>
+            <p>&rarr; <a href="https://blog.teachmint.com/teachmint-teacher-recognition-program/">Teachmint Gold Educator Award</a>: for completing 500 hours of live online teaching in Teachmint, 2022.</p>
+        </div>
+    </div>
+
+    <div id="footer" class="mb-5">
+        <hr>
+        <div class="container text-center">
+            <a href="https://www.linkedin.com/in/mdkarimullahaque" class="fab fa-linkedin fa-1x" title="LinkedIn"></a>
+            <a href="https://github.com/mdkarimullahaque" class="fab fa-github fa-1x" title="GitHub"></a>
+            <a href="https://www.researchgate.net/profile/Md-Haque-227" class="fab fa-researchgate fa-1x" title="ResearchGate"></a>
+            <a href="https://orcid.org/0009-0006-9179-8020" class="fab fa-orcid fa-1x" title="ORCiD"></a>
+        </div>
+        <div class="container text-center">
+            <p id="lastUpdated"><small></small></p>
+            <p><a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a></p>
         </div>
     </div>
 
     <script>
-        // Load the saved theme or default to light
+        // Load the saved theme or default to light mode
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
             const body = document.body;
@@ -76,22 +125,5 @@
         // Initialize theme on page load
         loadTheme();
     </script>
-
-    <div id="footer" class="mb-5">
-        <hr>
-        <div class="container text-center">
-            <a href="https://www.linkedin.com/in/mdkarimullahaque" class="fab fa-linkedin fa-1x" title="LinkedIn"></a>
-            <a href="https://github.com/mdkarimullahaque" class="fab fa-github fa-1x" title="GitHub"></a>
-            <a href="https://www.researchgate.net/profile/Md-Haque-227" class="fab fa-researchgate fa-1x" title="ResearchGate"></a>
-            <a href="https://orcid.org/0009-0006-9179-8020" class="fab fa-orcid fa-1x" title="ORCiD"></a>
-        </div>
-        <div class="container text-center">
-            <a href="https://mdkarimullahaque.github.io"><small></small></a>
-            <div class="container text-center">
-                <p id="lastUpdated"><small></small></p>
-                <p><a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a></p>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
