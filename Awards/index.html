@@ -26,28 +26,31 @@
         color: #ffffff;
     }
 
-    /* Ensure text is white in dark mode */
-    body.dark-mode,
+    /* Dark Mode Text and Links */
     body.dark-mode p,
-    body.dark-mode a,
-    body.dark-mode .navbar,
-    body.dark-mode .nav-link,
-    body.dark-mode #footer,
-    body.dark-mode .fab,
     body.dark-mode .container,
-    body.dark-mode .navbar-text {
-        color: #ffffff !important;
+    body.dark-mode #footer,
+    body.dark-mode #content {
+        color: #ffffff; /* White color for main text */
     }
 
-    /* Dark Theme Navbar and Footer Background */
-    body.dark-mode .navbar, 
-    body.dark-mode #footer {
-        background-color: #4c566a;
+    /* Dark Mode Links and Navbar Items */
+    body.dark-mode a,
+    body.dark-mode .navbar-brand,
+    body.dark-mode .nav-link {
+        color: #bf616a !important; /* Keep links in #bf616a */
     }
 
     /* Link Hover Color in Dark Mode */
-    body.dark-mode a:hover {
-        color: #eceff4 !important;
+    body.dark-mode a:hover,
+    body.dark-mode .nav-link:hover {
+        color: #d08770 !important; /* Slightly lighter color for link hover */
+    }
+
+    /* Dark Mode Navbar and Footer Background */
+    body.dark-mode .navbar,
+    body.dark-mode #footer {
+        background-color: #4c566a;
     }
 
     /* Theme Toggle Button Styling */
@@ -62,6 +65,7 @@
         cursor: pointer;
     }
 </style>
+
 
 </head>
 
