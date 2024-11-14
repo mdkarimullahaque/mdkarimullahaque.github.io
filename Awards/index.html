@@ -8,66 +8,45 @@
     <meta name="description" content="A simple monospaced resume theme for Hugo.">
     <meta name="author" content="MD Karimulla Haque">
     
+    <!-- Google Fonts and Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/saas/researcher.min.css">
     
     <style>
-    /* Default Light Theme */
-    body.light-mode {
-        background-color: #ffffff;
-        color: #2e3440;
-    }
+        /* Light Mode Styles */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #2e3440;
+        }
 
-    /* Dark Theme */
-    body.dark-mode {
-        background-color: #2e3440;
-        color: #ffffff;
-    }
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #2e3440;
+            color: #ffffff;
+        }
 
-    /* Dark Mode Text and Links */
-    body.dark-mode p,
-    body.dark-mode a,
-    body.dark-mode .container,
-    body.dark-mode #footer,
-    body.dark-mode #content {
-        color: #ffffff; /* White color for main text */
-    }
+        /* Dark Mode Specific Text Colors */
+        body.dark-mode #content a, 
+        body.dark-mode .nav-link,
+        body.dark-mode .navbar-brand, 
+        body.dark-mode #footer {
+            color: #bf616a;
+        }
 
-    /* Dark Mode Links and Navbar Items */
-    
-    body.dark-mode .navbar-brand,
-    body.dark-mode .nav-link {
-        color: #bf616a !important; /* Keep links in #bf616a */
-    }
-
-    /* Link Hover Color in Dark Mode */
-    /*body.dark-mode a:hover,
-    body.dark-mode .nav-link:hover {
-        color: #d08770 !important; /* Slightly lighter color for link hover */
-    
-
-    /* Dark Mode Navbar and Footer Background */
-    /*body.dark-mode .navbar,
-    body.dark-mode #footer {
-        background-color: #4c566a;
-    }*/
-
-    /* Theme Toggle Button Styling */
-    #theme-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        font-size: 1.5em;
-        background: none;
-        border: none;
-        color: inherit;
-        cursor: pointer;
-    }
-</style>
-
-
+        /* Theme Toggle Button Styling */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="light-mode">
