@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/saas/researcher.min.css">
     
     <style>
         /* Light Mode Styles */
@@ -45,11 +44,13 @@
         }
 
         /* Dark Mode Specific Text Colors */
-        body.dark-mode #content a, 
+        body.dark-mode #content, 
+        body.dark-mode .navbar-brand,
         body.dark-mode .nav-link,
-        body.dark-mode .navbar-brand, 
-        body.dark-mode #footer a {
-            color: #bf616a;
+        body.dark-mode #footer a,
+        body.dark-mode #content p,
+        body.dark-mode #footer {
+            color: #ffffff;
         }
 
         /* Theme Toggle Button Styling */
@@ -66,7 +67,7 @@
 
         /* General Layout and Font Styles */
         * {
-            color: #2e3440;
+            color: inherit;
             font-family: Inconsolata, monospace;
             font-size: 14pt;
             line-height: 1.2;
