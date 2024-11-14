@@ -27,10 +27,10 @@
         }
 
         /* Link Colors */
-        .nav-link, .navbar-brand {
+        #content a, .nav-link, .navbar-brand {
             color: #bf616a;
         }
-        #content a, #footer a { 
+        #footer a { 
             color: #2e3440;
         }
 
@@ -48,13 +48,14 @@
 
         /* Dark Mode Specific Text Colors */
         body.dark-mode #content, 
-        body.dark-mode .navbar-brand,
-        body.dark-mode .nav-link,
         body.dark-mode #footer a,
         body.dark-mode #content p,
         body.dark-mode #footer {
             color: #ffffff;
         }
+         body.dark-mode #content a, body.dark-mode .nav-link, body.dark-mode .navbar-brand {
+            color: #bf616a;
+         }
 
         /* Theme Toggle Button Styling */
         #theme-toggle {
