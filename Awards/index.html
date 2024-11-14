@@ -27,11 +27,28 @@
             color: #ffffff;
         }
 
+        /* Link Colors */
+        #content a, .nav-link, .navbar-brand, #footer a {
+            color: #bf616a;
+        }
+
+        /* Hover Color */
+        #content a:hover, .nav-link:hover, #footer a:hover {
+            color: #d08770;
+            text-decoration: underline;
+        }
+
+        /* Footer Social Icons Color */
+        #footer a.fab {
+            color: #bf616a;
+            margin: 0 8px;
+        }
+
         /* Dark Mode Specific Text Colors */
         body.dark-mode #content a, 
         body.dark-mode .nav-link,
         body.dark-mode .navbar-brand, 
-        body.dark-mode #footer {
+        body.dark-mode #footer a {
             color: #bf616a;
         }
 
@@ -45,6 +62,49 @@
             border: none;
             color: inherit;
             cursor: pointer;
+        }
+
+        /* General Layout and Font Styles */
+        * {
+            color: #2e3440;
+            font-family: Inconsolata, monospace;
+            font-size: 14pt;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+        }
+
+        #content p {
+            margin-bottom: 0.6rem;
+        }
+
+        #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+            font-size: medium;
+            font-weight: 700;
+            margin: 1rem 0 0.6rem;
+        }
+
+        #content h1 {
+            font-size: 1.8rem;
+        }
+
+        /* Footer Styling */
+        #footer {
+            margin-top: 2rem;
+            color: inherit;
+            text-align: center;
+        }
+        
+        /* Date Styling */
+        #lastUpdated {
+            font-size: 0.9em;
+            color: inherit;
         }
     </style>
 </head>
@@ -86,7 +146,7 @@
             <a href="https://orcid.org/0009-0006-9179-8020" class="fab fa-orcid fa-1x" title="ORCiD"></a>
         </div>
         <div class="container text-center">
-            <p id="lastUpdated"><small></small></p>
+            <p id="lastUpdated"><small>Last updated on: <script>document.write(new Date().toDateString());</script></small></p>
             <p><a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a></p>
         </div>
     </div>
