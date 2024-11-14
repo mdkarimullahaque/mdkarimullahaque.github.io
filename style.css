@@ -1,0 +1,56 @@
+/* General Styling */
+#content a, .nav-link {
+    color: #bf616a;
+    text-decoration: none;
+}
+
+#content a:hover, .nav-link:hover {
+    color: #bf616a;
+    text-decoration: underline;
+}
+
+#footer a, .navbar-brand {
+    color: #2e3440;
+    text-decoration: none;
+}
+
+* {
+    color: #2e3440;
+    font-family: Inconsolata, monospace;
+    font-size: 14pt;
+    line-height: 1.2;
+}
+
+/* Light Mode (Default) */
+body.light-mode {
+    background-color: #ffffff;
+    color: #2e3440;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #2e3440;
+    color: #ffffff;
+}
+
+body.dark-mode #content a,
+body.dark-mode .nav-link {
+    color: #bf616a;
+}
+
+body.dark-mode #footer a,
+body.dark-mode .navbar-brand {
+    color: #bf616a;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: inherit;
+    cursor: pointer;
+}
