@@ -14,48 +14,54 @@
     <link rel="stylesheet" href="/saas/researcher.min.css">
     
     <style>
-        /* Default Light Theme */
-        body.light-mode {
-            background-color: #ffffff;
-            color: #2e3440;
-        }
-        /* Dark Theme */
-        body.dark-mode {
-            background-color: #2e3440;
-            color: #fcfcfc;
-            /*color: #d8dee9;*/
-        }
-        /* Dark Theme Adjustments for Links, Navbar, and Footer */
-        /*body.dark-mode .navbar, body.dark-mode #footer {
-            background-color: #4c566a;
-        }*/
-        /*body.dark-mode a, body.dark-mode .nav-link {
-            color: #88c0d0;
-        }*/
-        body.dark-mode a:hover, body.dark-mode .nav-link:hover {
-            color: #eceff4;
-        }
-        body.dark-mode a, body.dark-mode .text {
-            color: #ffffff;
-        }
-        body.dark-mode a, body.dark-mode .content {
-            color: #ffffff;
-        }
-        body.dark-mode a, body.dark-mode .footer {
-            color: #ffffff;
-        }
-        /* Theme Toggle Button Styling */
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-        }
-    </style>
+    /* Default Light Theme */
+    body.light-mode {
+        background-color: #ffffff;
+        color: #2e3440;
+    }
+
+    /* Dark Theme */
+    body.dark-mode {
+        background-color: #2e3440;
+        color: #ffffff;
+    }
+
+    /* Ensure text is white in dark mode */
+    body.dark-mode,
+    body.dark-mode p,
+    body.dark-mode a,
+    body.dark-mode .navbar,
+    body.dark-mode .nav-link,
+    body.dark-mode #footer,
+    body.dark-mode .fab,
+    body.dark-mode .container,
+    body.dark-mode .navbar-text {
+        color: #ffffff !important;
+    }
+
+    /* Dark Theme Navbar and Footer Background */
+    body.dark-mode .navbar, 
+    body.dark-mode #footer {
+        background-color: #4c566a;
+    }
+
+    /* Link Hover Color in Dark Mode */
+    body.dark-mode a:hover {
+        color: #eceff4 !important;
+    }
+
+    /* Theme Toggle Button Styling */
+    #theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5em;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+    }
+ </style>
 </head>
 
 <body class="light-mode">
