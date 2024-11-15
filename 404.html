@@ -1,131 +1,219 @@
 <!DOCTYPE html>
-<html lang=""><head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>404 Page not found</title>
-    <meta name="description" content="A simple monospaced resume theme for Hugo.">
-    <meta name="author" content='MD Karimulla Haque'>
-
+    <link rel="shortcut icon" type="image/x-icon" href="https://mdkarimullahaque.github.io/favicon.png">
+    <meta name="description" content="Welcome to my Website.">
+    <meta name="author" content="MD Karimulla Haque">
+    <!-- Google Fonts and Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.3/css/academicons.min.css" integrity="sha512-vaoopdl+FJahyY2ddhsbDj8yDiRuyUYH/vIjF3z+cBg0sKc07NAQmUYli8volCGlW9OwlQyjVsr7Lh6qAManlw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/saas/researcher.min.css">
-    </head>
+    <style>
+      /* Light Mode Styles */
+      body.light-mode {
+        background-color: #ffffff;
+        color: #2e3440;
+      }
 
-    <body><div class="container mt-5">
-    <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
-        <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque">
-          
-          MD Karimulla Haque
-        </a>
+      /* Dark Mode Styles */
+      body.dark-mode {
+        background-color: #2e3440;
+        color: #ffffff;
+      }
+
+      /* Link Colors */
+      #content a,
+      .nav-link,
+      .navbar-brand {
+        color: #bf616a;
+      }
+
+      #footer a {
+        color: #2e3440;
+      }
+
+      /* Hover Color */
+      #content a:hover,
+      .nav-link:hover,
+      #footer a:hover {
+        /*color: #d08770;*/
+        text-decoration: underline;
+      }
+
+      /* Footer Social Icons Color */
+      #footer a.fab {
+        color: #2e3440;
+        margin: 0 8px;
+      }
+
+      /* Dark Mode Specific Text Colors */
+      body.dark-mode #content,
+      body.dark-mode #footer a,
+      body.dark-mode #content p,
+      body.dark-mode #footer {
+        color: #ffffff;
+      }
+
+      body.dark-mode #content a,
+      body.dark-mode .nav-link,
+      body.dark-mode .navbar-brand {
+        color: #bf616a;
+      }
+
+      /* Theme Toggle Button Styling */
+      #theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        font-size: 1.5em;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      /* General Layout and Font Styles */
+      * {
+        color: inherit;
+        font-family: Inconsolata, monospace;
+        font-size: 14pt;
+        line-height: 1.2;
+      }
+
+      .container {
+        max-width: 1000px;
+      }
+
+      .navbar-brand {
+        font-size: 2rem;
+      }
+
+      #content p {
+        margin-bottom: 0.6rem;
+      }
+
+      #content h1,
+      #content h2,
+      #content h3,
+      #content h4,
+      #content h5,
+      #content h6 {
+        font-size: medium;
+        font-weight: 700;
+        margin: 1rem 0 0.6rem;
+      }
+
+      #content h1 {
+        font-size: 1.8rem;
+      }
+      
+      #content h2 {
+        font-size: 1.4rem;
+      }
+
+      /* Footer Styling */
+      #footer {
+        margin-top: 2rem;
+        color: inherit;
+        text-align: center;
+      }
+
+      /* Date Styling */
+      #lastUpdated {
+        font-size: 0.9em;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body class="light-mode">
+    <!-- Theme Toggle Button in the Top-Right Corner -->
+    <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <div class="container mt-5">
+      <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
+        <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque"> MD Karimulla Haque </a>
         <div class="navbar-nav flex-row flex-wrap justify-content-center">
-            
-                
-                
-                    <a class="nav-item nav-link" href="/" title="Home">
-                        Home
-                    </a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="/publication" title="Publications">
-                        Publications
-                    </a>
-            
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="/Awards" title="Honors and Reward">
-                        Honors and Reward
-                    </a>
-                       <!-- <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="/Link" title="External Links">
-                        External Links
-                    </a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="/Note" title="Notes">
-                        Notes
-                    </a> -->
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="/contact" title="Contact">
-                        Contact
-                    </a>
-                    
-                
-            
+          <a class="nav-item nav-link" href="/" title="Home">
+            <i class="fas fa-home"></i>
+          </a>
+          <!--<<a class="nav-item nav-link" href="/" title="Home">Home</a>-->
+          <span class="nav-item navbar-text mx-1">/</span>
+          <a class="nav-item nav-link" href="/research" title="Research">Research</a>
+          <span class="nav-item navbar-text mx-1">/</span>
+          <a class="nav-item nav-link" href="/talks" title="Talks">Talks</a>
+          <span class="nav-item navbar-text mx-1">/</span>
+          <a class="nav-item nav-link" href="/awards" title="Awards">Awards</a>
+          <span class="nav-item navbar-text mx-1">/</span>
+          <!--<a class="nav-item nav-link" href="/publication" title="Publications">Publications</a><span class="nav-item navbar-text mx-1">/</span><a class="nav-item nav-link" href="/Awards" title="Honors and Reward">Honors and Reward</a><span class="nav-item navbar-text mx-1">/</span>-->
+          <a class="nav-item nav-link" href="/miscellaneous" title="Miscellaneous">Miscellaneous</a>
+          <span class="nav-item navbar-text mx-1">/</span>
+          <a class="nav-item nav-link" href="/contact" title="Contact">Contact</a>
         </div>
-    </nav>
-</div>
-<hr>
-<div id="content">
-<div class="container">
-    <h1>404 Error</h1>
+      </nav>
+    </div>
+    <hr>
+    <div id="content">
+      <div class="container">
+        <h1>404 Error</h1>
     <p>Page does not exist.</p>
 </div>
-
-        </div>  <style>
-    #lastUpdated {
-      font-size: medium;  
-    }
-  </style>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-      const lastModified = new Date(document.lastModified);
-      const day = String(lastModified.getDate()).padStart(2, '0');
-      const month = String(lastModified.getMonth() + 1).padStart(2, '0');
-      const year = String(lastModified.getFullYear()).slice(-2);
-      const hours = lastModified.getHours();
-      const minutes = String(lastModified.getMinutes()).padStart(2, '0');
-      
-      
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-      const formattedTime = `${formattedHours}:${minutes} ${ampm}`;
-      
-      const formattedDateTime = `${day}.${month}.${year} ${formattedTime}`;
-      
-      const lastUpdatedElement = document.getElementById('lastUpdated');
-      lastUpdatedElement.innerText = 'Last Updated: ' + formattedDateTime;
-    });
-  </script>
-
-<div id="footer" class="mb-5">
-    <hr>
-    
-    <div class="container text-center">
-
-            <a href="mailto:ma23c021@smail.iitm.ac.in" class="fas fa-envelope fa-1x" title="E-mail"></a>
-        
-            <a href="https://www.linkedin.com/in/mdkarimullahaque" class="fab fa-linkedin fa-1x" title="LinkedIn"></a>
-
-            <a href="https://sites.google.com/view/mdkarimullahaque" class="fa-solid fa-globe fa-1x" title="Website"></a>        
     </div>
-    
-    
-        <div class="container text-center">
-            <a href="https://mdkarimullahaque.github.io" title="" ><small></small></a>
-        <div class="container text-center">
-
-  <p id="lastUpdated"><small></small></p>
-            <div class="container text-center">
-	<p><a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a></p>
-        </div>
-    
-
-</div>
-
-
-
-    </body>
+    <div id="footer" class="mb-5">
+      <hr>
+      <div class="container text-center">
+        <a href="https://www.linkedin.com/in/mdkarimullahaque" class="fab fa-linkedin fa-1x" title="LinkedIn"></a>
+        <a href="https://github.com/mdkarimullahaque" class="fab fa-github fa-1x" title="GitHub"></a>
+        <a href="https://www.researchgate.net/profile/Md-Haque-227" class="fab fa-researchgate fa-1x" title="ResearchGate"></a>
+        <a href="https://orcid.org/0009-0006-9179-8020" class="fab fa-orcid fa-1x" title="ORCiD"></a>
+      </div>
+      <div class="container text-center">
+        <p id="lastUpdated">
+          <small>Last updated: <script>
+              document.write(new Date().toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              }));
+            </script>
+          </small>
+        </p>
+        <p>
+          <a href="https://mdkarimullahaque.github.io">©️ MD Karimulla Haque</a>
+        </p>
+      </div>
+    </div>
+    <script>
+      // Load the saved theme or default to light mode
+      function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (savedTheme) {
+          body.classList.add(savedTheme);
+          themeToggleBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+        } else {
+          body.classList.add('light-mode');
+          themeToggleBtn.textContent = '🌙';
+        }
+      }
+      // Toggle between light and dark themes
+      function toggleTheme() {
+        const body = document.body;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (body.classList.contains('dark-mode')) {
+          body.classList.replace('dark-mode', 'light-mode');
+          localStorage.setItem('theme', 'light-mode');
+          themeToggleBtn.textContent = '🌙';
+        } else {
+          body.classList.replace('light-mode', 'dark-mode');
+          localStorage.setItem('theme', 'dark-mode');
+          themeToggleBtn.textContent = '☀️';
+        }
+      }
+      // Initialize theme on page load
+      loadTheme();
+    </script>
+  </body>
 </html>
