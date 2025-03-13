@@ -109,7 +109,11 @@
       #content h1 {
         font-size: 1.8rem;
       }
-
+      
+      #content h2 {
+        font-size: 1.4rem;
+      }
+      
       /* Footer Styling */
       #footer {
         margin-top: 2rem;
@@ -129,9 +133,10 @@
     <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
     <div class="container mt-5">
       <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
-        <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque">MD Karimulla Haque</a>
+        <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque"> MD Karimulla Haque </a>
         <div class="navbar-nav flex-row flex-wrap justify-content-center">
           <a class="nav-item nav-link" href="/" title="Home"><i class="fas fa-home"></i></a>
+
           <!--<<a class="nav-item nav-link" href="/" title="Home">Home</a>-->
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/research" title="Research">Research</a>
@@ -155,12 +160,31 @@
         <p>&rarr; Judged for <b>SCUDEM IX 2024</b>, the SIMIODE Challenge Using Differential Equation Modeling, organized by the <b>SIMIODE - Systemic Initiative for Modeling Investigations and Opportunities with Differential Equations</b>, a non-profit organization in the United States. </p>
         
         <h2>You may get useful</h2>
-        <p class="justify-text">&rarr; <i><b>IIT JAM Strategy (Hindi)</b><br><br></i></p>
-        
-        <div class="video-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/XrqFSnPTEmI" 
-                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        <p class="justify-text">&rarr; 
+            <b>IIT JAM Strategy (Hindi)</b>
+            <br><br>
+            
+            
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Embed YouTube Video</title>
+            <style>
+              /* Center the video */
+                .video-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 30vh; /* Optional: Centers vertically in full viewport */
+              }
+            </style>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/XrqFSnPTEmI" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; 
+                    gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
       </div>
     </div>
     <div id="footer" class="mb-5">
@@ -201,7 +225,6 @@
           themeToggleBtn.textContent = '🌙';
         }
       }
-
       // Toggle between light and dark themes
       function toggleTheme() {
         const body = document.body;
@@ -216,7 +239,6 @@
           themeToggleBtn.textContent = '☀️';
         }
       }
-
       // Initialize theme on page load
       loadTheme();
     </script>
