@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Jug Game</title>
+    <!-- Use Tailwind CSS for a clean, responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <style>
+        /* Apply the Inter font and a subtle background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0; /* bg-slate-200 */
+        }
+
+        /* Custom styles for the jugs with smooth transitions */
+        .jug-container {
+            width: 100px;
+            height: 250px; /* Base height for the jug */
+            position: relative;
+            background-color: #cbd5e1; /* bg-slate-300 */
+            border-radius: 1rem 1rem 0.5rem 0.5rem;
+            border: 2px solid #64748b; /* border-slate-500 */
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .water {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0ea5e9; /* sky-500 */
+            transition: height 0.5s ease-in-out;
+            box-shadow: inset 0 0 10px #38bdf8;
+        }
+
+        /* Make the glass top a little more rounded */
+        .jug-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -5px;
+            right: -5px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            z-index: 10;
+        }
+
+        /* Button styles with cool effects */
+        .action-button {
+            transition: all 0.2s ease-in-out;
+            transform-origin: center;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            background-color: #38bdf8; /* sky-400 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .action-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom pre-formatted block for diagrams */
+        .code-block {
+            background-color: #f8fafc; /* slate-50 */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            white-space: pre;
+            text-align: left;
+            font-family: monospace;
+            line-height: 1.25;
+            color: #334155; /* slate-700 */
+        }
+    </style>
+</head>
+<body class="p-6 flex flex-col items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-2 text-slate-800">The Water Jug Puzzle</h1>
+        
+        <!-- User Input Section -->
+        <div id="input-section" class="mb-6">
+            <h2 class="text-xl font-bold mb-4 text-slate-700">Set Your Puzzle</h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div class="flex flex-col items-start w-full">
+                    <label for="jug-a-capacity" class="text-sm font-medium text-slate-600">Jug A Capacity:</label>
+                    <input type="number" id="jug-a-capacity" value="4" class="w-full mt-1 p-2 border border-slate-300 rounded-lg">
+                </div>
+                <div class="flex flex-col items-start w-full">
+                    <label for="jug-b-capacity" class="text-sm font-medium text-slate-600">Jug B Capacity:</label>
+                    <input type="number" id="jug-b-capacity" value="3" class="w-full mt-1 p-2 border border-slate-300 rounded-lg">
+                </div>
+                <div class="flex flex-col items-start w-full">
+                    <label for="target-amount" class="text-sm font-medium text-slate-600">Target Amount:</label>
+                    <input type="number" id="target-amount" value="2" class="w-full mt-1 p-2 border border-slate-300 rounded-lg">
+                </div>
+            </div>
+            <button id="start-btn" class="action-button bg-orange-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-orange-400 mt-6">Start Game</button>
+        </div>
+
+        <!-- Game Interface Section -->
+        <div id="game-section" class="hidden">
+            <p id="message-text" class="text-md sm:text-lg mb-6 text-slate-600">
+                Goal: Get exactly 2 gallons of water in either jug.
+            </p>
+
+            <!-- Jugs Display -->
+            <div class="flex flex-col sm:flex-row justify-center items-end gap-10 sm:gap-16 mb-8">
+                <!-- Jug A -->
+                <div class="flex flex-col items-center">
+                    <span id="jug-a-label" class="text-lg font-semibold mb-2 text-slate-700">Jug A (0/4)</span>
+                    <div class="jug-container">
+                        <div id="jug-a-water" class="water"></div>
+                    </div>
+                </div>
+
+                <!-- Jug B -->
+                <div class="flex flex-col items-center">
+                    <span id="jug-b-label" class="text-lg font-semibold mb-2 text-slate-700">Jug B (0/3)</span>
+                    <div class="jug-container"> <!-- Scaled height based on capacity -->
+                        <div id="jug-b-water" class="water"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
+                <button id="fillA-btn" class="action-button bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-sky-400">Fill A</button>
+                <button id="fillB-btn" class="action-button bg-sky-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-sky-400">Fill B</button>
+                <button id="emptyA-btn" class="action-button bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-400">Empty A</button>
+                <button id="emptyB-btn" class="action-button bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-400">Empty B</button>
+                <button id="pourAtoB-btn" class="action-button bg-emerald-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-emerald-400">Pour A to B</button>
+                <button id="pourBtoA-btn" class="action-button bg-emerald-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-emerald-400">Pour B to A</button>
+            </div>
+
+            <!-- Reset & Solution Buttons -->
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-6">
+                <button id="reset-btn" class="action-button bg-slate-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-slate-400">Reset</button>
+                
+                <div class="flex flex-col items-center">
+                    <label for="algorithm-select" class="font-medium text-slate-700 mb-2">Select Algorithm:</label>
+                    <select id="algorithm-select" class="p-2 border border-slate-300 rounded-lg">
+                        <option value="bfs">Breadth-First Search (BFS)</option>
+                        <option value="dfs">Depth-First Search (DFS)</option>
+                        <option value="astar">A* Search</option>
+                    </select>
+                </div>
+                <button id="solve-btn" class="action-button bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-400 mt-4">Show Solution</button>
+            </div>
+        </div>
+
+        <!-- Message Box -->
+        <div id="message-box" class="mt-8 p-4 rounded-lg transition-all duration-300 ease-in-out hidden">
+            <p id="message-box-text" class="font-bold text-center"></p>
+        </div>
+
+        <!-- Solution Steps Container -->
+        <div id="solution-container" class="mt-8 text-left bg-slate-100 p-4 rounded-lg hidden">
+            <h3 id="solution-title" class="text-xl font-bold mb-2 text-slate-700">Solution Steps</h3>
+            <p id="solution-description" class="text-sm mb-2 text-slate-500">
+                This solution was found using a Breadth-First Search (BFS) algorithm, which guarantees the shortest path.
+            </p>
+            <ol id="solution-list" class="list-decimal list-inside text-slate-600">
+                <!-- Solution steps will be dynamically added here -->
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Game state and variables
+        const JUG_HEIGHT_PX = 250; // Corresponds to the height in CSS
+        
+        let jugACapacity = 0;
+        let jugBCapacity = 0;
+        let targetAmount = 0;
+        let jugACurrent = 0;
+        let jugBCurrent = 0;
+        let userPath = []; // Stores the steps taken by the user
+        
+        // DOM elements
+        const jugAWater = document.getElementById('jug-a-water');
+        const jugBWater = document.getElementById('jug-b-water');
+        const jugALabel = document.getElementById('jug-a-label');
+        const jugBLabel = document.getElementById('jug-b-label');
+        const messageText = document.getElementById('message-text');
+        const messageBox = document.getElementById('message-box');
+        const messageBoxText = document.getElementById('message-box-text');
+        const solutionContainer = document.getElementById('solution-container');
+        const solutionTitle = document.getElementById('solution-title');
+        const solutionDescription = document.getElementById('solution-description');
+        const solutionList = document.getElementById('solution-list');
+        const inputSection = document.getElementById('input-section');
+        const gameSection = document.getElementById('game-section');
+        const jugAInput = document.getElementById('jug-a-capacity');
+        const jugBInput = document.getElementById('jug-b-capacity');
+        const targetInput = document.getElementById('target-amount');
+        const startBtn = document.getElementById('start-btn');
+        const algorithmSelect = document.getElementById('algorithm-select');
+
+        // Initial setup and event listeners
+        window.onload = function() {
+            startBtn.addEventListener('click', startGame);
+            document.getElementById('fillA-btn').addEventListener('click', () => handleAction('Fill Jug A', fillA));
+            document.getElementById('fillB-btn').addEventListener('click', () => handleAction('Fill Jug B', fillB));
+            document.getElementById('emptyA-btn').addEventListener('click', () => handleAction('Empty Jug A', emptyA));
+            document.getElementById('emptyB-btn').addEventListener('click', () => handleAction('Empty Jug B', emptyB));
+            document.getElementById('pourAtoB-btn').addEventListener('click', () => handleAction('Pour A to B', pourAtoB));
+            document.getElementById('pourBtoA-btn').addEventListener('click', () => handleAction('Pour B to A', pourBtoA));
+            document.getElementById('reset-btn').addEventListener('click', resetGame);
+            document.getElementById('solve-btn').addEventListener('click', showSolution);
+        };
+        
+        // --- Game Setup Functions ---
+
+        /**
+         * Euclidean algorithm to find the greatest common divisor (GCD) of two numbers.
+         * @param {number} a
+         * @param {number} b
+         * @returns {number} The GCD.
+         */
+        function gcd(a, b) {
+            return b === 0 ? a : gcd(b, a % b);
+        }
+        
+        /**
+         * Generic handler for button clicks that records the action before calling the game logic.
+         * @param {string} action The name of the action.
+         * @param {Function} logicFunction The function to execute for the action.
+         */
+        function handleAction(action, logicFunction) {
+            const previousA = jugACurrent;
+            const previousB = jugBCurrent;
+            
+            // Execute the action's logic
+            logicFunction();
+            
+            // Check if the state actually changed before logging the step
+            if (previousA !== jugACurrent || previousB !== jugBCurrent) {
+                // Record the step and the new state
+                userPath.push({ action, state: [jugACurrent, jugBCurrent] });
+            }
+
+            // Now, update the UI and check for a win
+            updateState();
+            if (jugACurrent === targetAmount || jugBCurrent === targetAmount) {
+                showMessageBox("Congratulations! You've solved the puzzle!", "bg-emerald-100 text-emerald-800");
+                comparePathsAndDisplay();
+            }
+        }
+
+        /**
+         * Validates inputs and starts the game if the puzzle is feasible.
+         */
+        function startGame() {
+            const a = parseInt(jugAInput.value);
+            const b = parseInt(jugBInput.value);
+            const target = parseInt(targetInput.value);
+
+            // Basic input validation
+            if (isNaN(a) || isNaN(b) || isNaN(target) || a <= 0 || b <= 0 || target <= 0) {
+                showMessageBox("Please enter valid positive numbers for all fields.", "bg-red-100 text-red-800");
+                return;
+            }
+
+            // Check if the target is larger than either jug
+            if (target > Math.max(a, b)) {
+                showMessageBox("This puzzle has no solution. The target amount cannot be greater than the capacity of the largest jug.", "bg-red-100 text-red-800");
+                gameSection.classList.add('hidden');
+                hideSolution();
+                return;
+            }
+
+            // Check if the puzzle is solvable
+            // A solution exists if the target is a multiple of gcd(jugA, jugB)
+            if (target % gcd(a, b) !== 0) {
+                showMessageBox("This puzzle has no solution. The target amount must be a multiple of the greatest common divisor of the jug capacities.", "bg-red-100 text-red-800");
+                gameSection.classList.add('hidden');
+                hideSolution();
+                return;
+            }
+
+            // If feasible, set capacities and start the game
+            jugACapacity = a;
+            jugBCapacity = b;
+            targetAmount = target;
+            
+            inputSection.classList.add('hidden');
+            gameSection.classList.remove('hidden');
+            
+            resetGame();
+        }
+
+        /**
+         * Resets the game state and UI to the initial values.
+         */
+        function resetGame() {
+            jugACurrent = 0;
+            jugBCurrent = 0;
+            userPath = []; // Clear the user's path
+            
+            // Update the physical jug sizes based on the new capacities
+            const jugAPercentage = jugACapacity / Math.max(jugACapacity, jugBCapacity);
+            const jugBPercentage = jugBCapacity / Math.max(jugACapacity, jugBCapacity);
+            document.querySelector('#jug-a-water').parentElement.style.height = `${jugAPercentage * JUG_HEIGHT_PX}px`;
+            document.querySelector('#jug-b-water').parentElement.style.height = `${jugBPercentage * JUG_HEIGHT_PX}px`;
+
+            updateState();
+            hideMessageBox();
+            hideSolution();
+            
+            messageText.textContent = `Goal: Get exactly ${targetAmount} gallons of water in either jug.`;
+        }
+
+        // --- Game Logic Functions ---
+        // Note: These functions no longer call updateState() directly.
+        // The handleAction() function is now responsible for this.
+
+        /**
+         * Fills jug A to its maximum capacity.
+         */
+        function fillA() {
+            if (jugACurrent === jugACapacity) return;
+            jugACurrent = jugACapacity;
+        }
+
+        /**
+         * Fills jug B to its maximum capacity.
+         */
+        function fillB() {
+            if (jugBCurrent === jugBCapacity) return;
+            jugBCurrent = jugBCapacity;
+        }
+
+        /**
+         * Empties jug A.
+         */
+        function emptyA() {
+            if (jugACurrent === 0) return;
+            jugACurrent = 0;
+        }
+
+        /**
+         * Empties jug B.
+         */
+        function emptyB() {
+            if (jugBCurrent === 0) return;
+            jugBCurrent = 0;
+        }
+
+        /**
+         * Pours water from jug A to jug B.
+         */
+        function pourAtoB() {
+            const pourAmount = Math.min(jugACurrent, jugBCapacity - jugBCurrent);
+            jugACurrent -= pourAmount;
+            jugBCurrent += pourAmount;
+        }
+
+        /**
+         * Pours water from jug B to jug A.
+         */
+        function pourBtoA() {
+            const pourAmount = Math.min(jugBCurrent, jugACapacity - jugACurrent);
+            jugBCurrent -= pourAmount;
+            jugACurrent += pourAmount;
+        }
+        
+        // --- UI Update and Win Condition Functions ---
+
+        /**
+         * Updates the visual representation of the jugs and checks for a win condition.
+         */
+        function updateState() {
+            // Update the jug labels
+            jugALabel.textContent = `Jug A (${jugACurrent}/${jugACapacity})`;
+            jugBLabel.textContent = `Jug B (${jugBCurrent}/${jugBCapacity})`;
+            
+            // Calculate the height of the water based on the current amount and original jug heights
+            const heightA = (jugACurrent / jugACapacity) * document.querySelector('#jug-a-water').parentElement.clientHeight;
+            const heightB = (jugBCurrent / jugBCapacity) * document.querySelector('#jug-b-water').parentElement.clientHeight;
+            
+            // Update the jug heights
+            jugAWater.style.height = `${heightA}px`;
+            jugBWater.style.height = `${heightB}px`;
+        }
+        
+        /**
+         * Displays a message in a colored box.
+         * @param {string} text The message to display.
+         * @param {string} classes The Tailwind CSS classes for the box's appearance.
+         */
+        function showMessageBox(text, classes) {
+            messageBoxText.textContent = text;
+            messageBox.className = `mt-8 p-4 rounded-lg transition-all duration-300 ease-in-out ${classes}`;
+            messageBox.style.display = 'block';
+        }
+
+        /**
+         * Hides the message box.
+         */
+        function hideMessageBox() {
+            messageBox.style.display = 'none';
+        }
+
+        /**
+         * Hides the solution steps container.
+         */
+        function hideSolution() {
+            solutionContainer.style.display = 'none';
+        }
+
+        /**
+         * Compares the user's solution path to the algorithm-generated paths and displays the results.
+         */
+        function comparePathsAndDisplay() {
+            solutionContainer.style.display = 'block';
+            solutionList.innerHTML = ''; // Clear previous steps
+            
+            // Generate solutions for all algorithms
+            const bfsSolution = findSolutionBFS();
+            const dfsSolution = findSolutionDFS();
+            const astarSolution = findSolutionAStar();
+            
+            const solutions = [
+                { name: 'Breadth-First Search (BFS)', path: bfsSolution },
+                { name: 'Depth-First Search (DFS)', path: dfsSolution },
+                { name: 'A* Search', path: astarSolution }
+            ];
+
+            // Compare user's path to each algorithm's path
+            let bestMatch = null;
+            let bestScore = -1;
+
+            solutions.forEach(solution => {
+                if (solution.path) {
+                    let score = 0;
+                    const minLength = Math.min(userPath.length, solution.path.length);
+                    for (let i = 0; i < minLength; i++) {
+                        const userState = JSON.stringify(userPath[i].state);
+                        const algoState = JSON.stringify(solution.path[i].state);
+                        if (userState === algoState) {
+                            score++;
+                        }
+                    }
+                    // A penalty for longer paths
+                    score -= Math.abs(userPath.length - solution.path.length);
+                    
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = solution;
+                    }
+                }
+            });
+
+            // Display the best matching algorithm
+            if (bestMatch && bestMatch.path) {
+                solutionTitle.textContent = 'Your Solution Analysis';
+                solutionDescription.innerHTML = `Your path is most similar to the one found by the <b>${bestMatch.name}</b> algorithm, taking ${userPath.length} steps. For comparison, the BFS solution, which is the shortest possible, takes ${bfsSolution.length} steps.`;
+            } else {
+                 solutionTitle.textContent = 'Your Solution Analysis';
+                 solutionDescription.innerHTML = 'Your solution is unique! You took a path that does not closely match a standard algorithm.';
+            }
+
+            // Display the user's path
+            const userPathTitle = document.createElement('h4');
+            userPathTitle.className = 'font-bold mt-4 mb-2 text-slate-700';
+            userPathTitle.textContent = `Your ${userPath.length} Steps:`;
+            solutionList.appendChild(userPathTitle);
+            
+            userPath.forEach(step => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${step.action}: Jug A is at ${step.state[0]} gallons, Jug B is at ${step.state[1]} gallons.`;
+                solutionList.appendChild(listItem);
+            });
+        }
+        
+        // --- Solution Finding Logic ---
+
+        /**
+         * Performs a Breadth-First Search to find the shortest path to the solution.
+         * @returns {Array|null} The array of solution steps or null if no solution is found.
+         */
+        function findSolutionBFS() {
+            const startState = [0, 0];
+            const queue = [[startState, []]]; // Queue of [state, path_to_state]
+            const visited = new Set([JSON.stringify(startState)]);
+
+            while (queue.length > 0) {
+                const [currentState, currentPath] = queue.shift();
+                const [a, b] = currentState;
+
+                // Check for solution at the beginning of the loop
+                if (a === targetAmount || b === targetAmount) {
+                    return currentPath; // Solution found!
+                }
+
+                // Generate all possible next states
+                const nextStates = [
+                    [jugACapacity, b, 'Fill Jug A'],
+                    [a, jugBCapacity, 'Fill Jug B'],
+                    [0, b, 'Empty Jug A'],
+                    [a, 0, 'Empty Jug B'],
+                    (() => {
+                        const pourAmount = Math.min(a, jugBCapacity - b);
+                        return [a - pourAmount, b + pourAmount, 'Pour A to B'];
+                    })(),
+                    (() => {
+                        const pourAmount = Math.min(b, jugACapacity - a);
+                        return [a + pourAmount, b - pourAmount, 'Pour B to A'];
+                    })()
+                ];
+
+                for (const [nextA, nextB, action] of nextStates) {
+                    const nextState = [nextA, nextB];
+                    const nextStateStr = JSON.stringify(nextState);
+
+                    if (!visited.has(nextStateStr)) {
+                        visited.add(nextStateStr);
+                        queue.push([nextState, [...currentPath, { action, state: nextState }]]);
+                    }
+                }
+            }
+            return null; // No solution found
+        }
+
+        /**
+         * Performs a Depth-First Search to find a path to the solution.
+         * Note: DFS does not guarantee the shortest path.
+         * @returns {Array|null} The array of solution steps or null if no solution is found.
+         */
+        function findSolutionDFS() {
+            const startState = [0, 0];
+            const stack = [[startState, []]]; // Stack of [state, path_to_state]
+            const visited = new Set([JSON.stringify(startState)]);
+
+            while (stack.length > 0) {
+                const [currentState, currentPath] = stack.pop();
+                const [a, b] = currentState;
+                
+                // Check for solution at the beginning of the loop
+                if (a === targetAmount || b === targetAmount) {
+                    return currentPath;
+                }
+
+                const nextStates = [
+                    // Generate possible next states in a consistent order.
+                    [jugACapacity, b, 'Fill Jug A'],
+                    [a, jugBCapacity, 'Fill Jug B'],
+                    [0, b, 'Empty Jug A'],
+                    [a, 0, 'Empty Jug B'],
+                    (() => {
+                        const pourAmount = Math.min(a, jugBCapacity - b);
+                        return [a - pourAmount, b + pourAmount, 'Pour A to B'];
+                    })(),
+                    (() => {
+                        const pourAmount = Math.min(b, jugACapacity - a);
+                        return [a + pourAmount, b - pourAmount, 'Pour B to A'];
+                    })()
+                ];
+                
+                // Reverse to push to stack, so they get explored in the original order.
+                nextStates.reverse();
+
+                for (const [nextA, nextB, action] of nextStates) {
+                    const nextState = [nextA, nextB];
+                    const nextStateStr = JSON.stringify(nextState);
+
+                    if (!visited.has(nextStateStr)) {
+                        visited.add(nextStateStr);
+                        stack.push([nextState, [...currentPath, { action, state: nextState }]]);
+                    }
+                }
+            }
+            return null; // No solution found
+        }
+        
+        /**
+         * Performs an A* Search to find the shortest path to the solution.
+         * It uses a heuristic to guide the search, making it more efficient.
+         * @returns {Array|null} The array of solution steps or null if no solution is found.
+         */
+        function findSolutionAStar() {
+            // Heuristic function: Manhattan distance to the target
+            const heuristic = (a, b) => Math.min(Math.abs(a - targetAmount), Math.abs(b - targetAmount));
+            
+            // Priority queue: stores [f_cost, g_cost, state, path]
+            // We'll simulate this with a sorted array for simplicity
+            const openSet = [[0 + heuristic(0, 0), 0, [0, 0], []]];
+            const visited = new Set([JSON.stringify([0, 0])]);
+
+            while (openSet.length > 0) {
+                // Get the state with the lowest f_cost
+                openSet.sort((a, b) => a[0] - b[0]);
+                const [fCost, gCost, currentState, currentPath] = openSet.shift();
+                const [a, b] = currentState;
+                
+                // Check for solution at the beginning of the loop
+                if (a === targetAmount || b === targetAmount) {
+                    return currentPath; // Solution found!
+                }
+
+                // Generate all possible next states
+                const nextStates = [
+                    [jugACapacity, b, 'Fill Jug A'],
+                    [a, jugBCapacity, 'Fill Jug B'],
+                    [0, b, 'Empty Jug A'],
+                    [a, 0, 'Empty Jug B'],
+                    (() => {
+                        const pourAmount = Math.min(a, jugBCapacity - b);
+                        return [a - pourAmount, b + pourAmount, 'Pour A to B'];
+                    })(),
+                    (() => {
+                        const pourAmount = Math.min(b, jugACapacity - a);
+                        return [a + pourAmount, b - pourAmount, 'Pour B to A'];
+                    })()
+                ];
+
+                for (const [nextA, nextB, action] of nextStates) {
+                    const nextState = [nextA, nextB];
+                    const nextStateStr = JSON.stringify(nextState);
+
+                    if (!visited.has(nextStateStr)) {
+                        visited.add(nextStateStr);
+                        const newGCost = gCost + 1;
+                        const newFCost = newGCost + heuristic(nextA, nextB);
+                        openSet.push([newFCost, newGCost, nextState, [...currentPath, { action, state: nextState }]]);
+                    }
+                }
+            }
+            return null; // No solution found
+        }
+
+
+        /**
+         * Displays the solution steps found by the selected algorithm.
+         */
+        function showSolution() {
+            const selectedAlgorithm = algorithmSelect.value;
+            let solutionPath = null;
+            let algorithmName = '';
+            let descriptionText = '';
+
+            if (selectedAlgorithm === 'bfs') {
+                solutionPath = findSolutionBFS();
+                algorithmName = 'Breadth-First Search (BFS)';
+                descriptionText = 'This solution was found using a Breadth-First Search (BFS) algorithm, which guarantees the shortest path.';
+                solutionTitle.textContent = `Solution Steps (BFS)`;
+            } else if (selectedAlgorithm === 'dfs') {
+                solutionPath = findSolutionDFS();
+                algorithmName = 'Depth-First Search (DFS)';
+                descriptionText = 'This solution was found using a Depth-First Search (DFS) algorithm. Note that DFS finds a path, but not necessarily the shortest one.';
+                solutionTitle.textContent = `Solution Steps (DFS)`;
+            } else if (selectedAlgorithm === 'astar') {
+                solutionPath = findSolutionAStar();
+                algorithmName = 'A* Search';
+                descriptionText = 'This solution was found using an A* Search algorithm, which uses an informed search heuristic to efficiently find the shortest path.';
+                solutionTitle.textContent = `Solution Steps (A*)`;
+            }
+            
+            solutionList.innerHTML = ''; // Clear previous steps
+            
+            if (solutionPath) {
+                solutionContainer.style.display = 'block';
+                solutionDescription.textContent = descriptionText;
+                solutionPath.forEach(step => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${step.action}: Jug A is at ${step.state[0]} gallons, Jug B is at ${step.state[1]} gallons.`;
+                    solutionList.appendChild(listItem);
+                });
+                showMessageBox(`Solution found using ${algorithmName}!`, "bg-sky-100 text-sky-800");
+            } else {
+                showMessageBox("I could not find a solution for this puzzle.", "bg-red-100 text-red-800");
+            }
+        }
+    </script>
+</body>
+</html>
