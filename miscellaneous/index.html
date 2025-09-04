@@ -7,7 +7,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://mdkarimullahaque.github.io/favicon.png">
     <meta name="description" content="Welcome to MD Karimulla Haque's Personal Portfolio.">
     <meta name="author" content="MD Karimulla Haque">
-    <!-- Google Fonts and Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -134,7 +133,6 @@
       </style>
   </head>
   <body class="light-mode">
-    <!-- Theme Toggle Button in the Top-Right Corner -->
     <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
     <div class="container mt-5">
       <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
@@ -142,7 +140,6 @@
         <div class="navbar-nav flex-row flex-wrap justify-content-center">
           <a class="nav-item nav-link" href="/" title="Home"><i class="fas fa-home"></i></a>
 
-          <!--<<a class="nav-item nav-link" href="/" title="Home">Home</a>-->
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/research" title="Research">Research</a>
           <span class="nav-item navbar-text mx-1">/</span>
@@ -150,9 +147,6 @@
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/awards" title="Awards">Awards</a>
           <span class="nav-item navbar-text mx-1">/</span>
-          <!--<a class="nav-item nav-link" href="/publication" title="Publications">Publications</a><span class="nav-item navbar-text mx-1">/</span><a class="nav-item nav-link" href="/Awards" title="Honors and Reward">Honors and Reward</a><span class="nav-item navbar-text mx-1">/</span>-->
-          <!--<a class="nav-item nav-link" href="/miscellaneous" title="Miscellaneous">Miscellaneous</a>
-          <span class="nav-item navbar-text mx-1">/</span>-->
           <a class="nav-item nav-link" href="/contact" title="Contact">Contact</a>
         </div>
       </nav>
@@ -165,7 +159,7 @@
         <p class="justify-text">&rarr; <i>
           <b>Dubbing of Courses for the Rural Self Employment Training Institutes (RSETI) e-Learning AI Platform</b>
           </i>; <i>Website:</i> <a href="https://www.reaplearn.in/">
-            https://reaplearn.in</a> ; <i>Description:</i> Currently contributing to the <b>Rural Self Employment Training Institutes (RSETI) e-Learning AI Platform (REAP)</b> by dubbing the courses <a href="https://www.reaplearn.in/courses/details/69a4586e-80b7-4dcd-b08a-147f299200c4"><b>Commercial Floriculture</b></a>, <a href="https://www.reaplearn.in/courses/details/6657a82a-898d-401e-b2e3-b6512a157ca3"><b>Photo Framing, Lamination and Screen Printing</b></a> and <a href="https://www.reaplearn.in/courses/details/6045eba9-4c56-4cbc-8b94-ddba52d80c2a"><b>Cell phone Repair and Service</b></a> from <b>English</b> to <b>Bengali</b>. This initiative, supported by the <a href="https://kaushal.rural.gov.in/#/home"><b>Ministry of Rural Development (MoRD)</b></a>, aims to make skill development education more accessible and inclusive for Bengali-speaking learners across rural India.
+            https://reaplearn.in</a> ; <i>Description:</i> Currently contributing to the <b>Rural Self Employment Training Institutes (RSETI) e-Learning AI Platform (REAP)</b> by dubbing the courses <a href="https://www.reaplearn.in/courses/details/69a4586e-80b7-4dcd-b08a-147f299200c4"><b>Commercial Floriculture</b></a>, <a href="https://www.reaplearn.in/courses/details/6657a82a-898d-401e-b2e3-b6512a157ca3"><b>Photo Framing, Lamination and Screen Printing</b></a> and <a href="https://www.reaplearn.in/courses/details/6045eba9-4c56-4cbc-8b94-ddba52d80c2a"><b>Cell phone Repair and Service</b></a> from <b>English</b> to <b>Bengali</b>. This initiative, supported by the <a href="https://kaushal.rural.gov.in/#/home"><b>Ministry of Rural Development (MoRD)</b></a>, aims to make skill development education more accessible and inclusive for Bengali-speaking learners across rural India.
         </p>
         <p>&rarr; Judged for <b>SCUDEM IX 2024</b>, the <a href="https://in.mathworks.com/academia/student-competitions/scudem-simiode-challenge-using-differential-equations-modeling.html">SIMIODE Challenge Using Differential Equation Modeling</a>, organized by the <b>SIMIODE - Systemic Initiative for Modeling Investigations and Opportunities with Differential Equations</b>, a non-profit organization in the United States. </p>
         <p class="justify-text">&rarr;
@@ -189,8 +183,8 @@
             
             <div class="video-container">
               <iframe width="560" height="315" src="https://www.youtube.com/embed/XrqFSnPTEmI" 
-                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; 
-                    gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; 
+                  gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         <h2>You may get Fun</h2>
 <p class="justify-text">
@@ -235,18 +229,30 @@
         const savedTheme = localStorage.getItem('theme');
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+
         if (savedTheme) {
+          // If a theme is saved in local storage, use it
           body.classList.add(savedTheme);
           themeToggleBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
         } else {
-          body.classList.add('light-mode');
-          themeToggleBtn.textContent = '🌙';
+          // If no theme is saved, check the user's system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'dark-mode'); // Save the preference for consistency
+          } else {
+            body.classList.add('light-mode');
+            themeToggleBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'light-mode'); // Save the preference for consistency
+          }
         }
       }
+      
       // Toggle between light and dark themes
       function toggleTheme() {
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
         if (body.classList.contains('dark-mode')) {
           body.classList.replace('dark-mode', 'light-mode');
           localStorage.setItem('theme', 'light-mode');
@@ -257,6 +263,7 @@
           themeToggleBtn.textContent = '☀️';
         }
       }
+      
       // Initialize theme on page load
       loadTheme();
     </script>
