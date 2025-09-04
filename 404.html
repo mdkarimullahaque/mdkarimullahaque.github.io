@@ -7,7 +7,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://mdkarimullahaque.github.io/favicon.png">
     <meta name="description" content="Welcome to my Website.">
     <meta name="author" content="MD Karimulla Haque">
-    <!-- Google Fonts and Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" integrity="sha512-rt/SrQ4UNIaGfDyEXZtNcyWvQeOq0QLygHluFQcSjaGB04IxWhal71tKuzP6K8eYXYB6vJV4pHkXcmFGGQ1/0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -129,7 +128,6 @@
     </style>
   </head>
   <body class="light-mode">
-    <!-- Theme Toggle Button in the Top-Right Corner -->
     <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
     <div class="container mt-5">
       <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
@@ -138,7 +136,6 @@
           <a class="nav-item nav-link" href="/" title="Home">
             <i class="fas fa-home"></i>
           </a>
-          <!--<<a class="nav-item nav-link" href="/" title="Home">Home</a>-->
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/research" title="Research">Research</a>
           <span class="nav-item navbar-text mx-1">/</span>
@@ -146,7 +143,6 @@
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/awards" title="Awards">Awards</a>
           <span class="nav-item navbar-text mx-1">/</span>
-          <!--<a class="nav-item nav-link" href="/publication" title="Publications">Publications</a><span class="nav-item navbar-text mx-1">/</span><a class="nav-item nav-link" href="/Awards" title="Honors and Reward">Honors and Reward</a><span class="nav-item navbar-text mx-1">/</span>-->
           <a class="nav-item nav-link" href="/miscellaneous" title="Miscellaneous">Miscellaneous</a>
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/contact" title="Contact">Contact</a>
@@ -157,8 +153,8 @@
     <div id="content">
       <div class="container">
         <h1>404 Error</h1>
-    <p>Page does not exist.</p>
-</div>
+      <p>Page does not exist.</p>
+    </div>
     </div>
     <div id="footer" class="mb-5">
       <hr>
@@ -194,18 +190,30 @@
         const savedTheme = localStorage.getItem('theme');
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+
         if (savedTheme) {
+          // If a theme is saved in local storage, use it
           body.classList.add(savedTheme);
           themeToggleBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
         } else {
-          body.classList.add('light-mode');
-          themeToggleBtn.textContent = '🌙';
+          // If no theme is saved, check the user's system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'dark-mode'); // Save the preference for consistency
+          } else {
+            body.classList.add('light-mode');
+            themeToggleBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'light-mode'); // Save the preference for consistency
+          }
         }
       }
+      
       // Toggle between light and dark themes
       function toggleTheme() {
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
         if (body.classList.contains('dark-mode')) {
           body.classList.replace('dark-mode', 'light-mode');
           localStorage.setItem('theme', 'light-mode');
@@ -216,6 +224,7 @@
           themeToggleBtn.textContent = '☀️';
         }
       }
+      
       // Initialize theme on page load
       loadTheme();
     </script>
