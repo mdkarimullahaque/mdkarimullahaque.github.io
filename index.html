@@ -138,24 +138,17 @@
     </style>
   </head>
   <body class="light-mode">
-    <!-- Theme Toggle Button in the Top-Right Corner -->
     <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
     <div class="container mt-5">
       <nav class="navbar navbar-expand-sm flex-column flex-sm-row text-nowrap p-0">
         <a class="navbar-brand mx-0 mr-sm-auto" href="https://mdkarimullahaque.github.io" title="MD Karimulla Haque"> MD Karimulla Haque </a>
         <div class="navbar-nav flex-row flex-wrap justify-content-center">
-          <!--<a class="nav-item nav-link" href="/" title="Home">-->
-            <!--<i class="fas fa-home"></i>
-          </a>-->
-          <!--<a class="nav-item nav-link" href="/" title="Home">Home</a>-->
-          <!--<span class="nav-item navbar-text mx-1">/</span>-->
           <a class="nav-item nav-link" href="/research" title="Research">Research</a>
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/talks" title="Talks">Talks</a>
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/awards" title="Awards">Awards</a>
           <span class="nav-item navbar-text mx-1">/</span>
-          <!--<a class="nav-item nav-link" href="/publication" title="Publications">Publications</a><span class="nav-item navbar-text mx-1">/</span><a class="nav-item nav-link" href="/Awards" title="Honors and Reward">Honors and Reward</a><span class="nav-item navbar-text mx-1">/</span>-->
           <a class="nav-item nav-link" href="/miscellaneous" title="Miscellaneous">Miscellaneous</a>
           <span class="nav-item navbar-text mx-1">/</span>
           <a class="nav-item nav-link" href="/contact" title="Contact">Contact</a>
@@ -168,44 +161,19 @@
 <div class="container">
     <h2 id="about-me">About me</h2>
 <figure class="avatar"><img src="/avatar.jpg"
-         alt="avatar"/>
+           alt="avatar"/>
 </figure>
 
-<!--<p>I am MD Karimulla Haque, a <a href="https://math.iitm.ac.in/student/program/1#:~:text=21,MA23C021">postgraduate</a> student in the <a href="https://math.iitm.ac.in/">Mathematics Department</a> at the <a href="https://www.iitm.ac.in/">Indian Institute of Technology Madras</a>. Currently, I am working on a project under the guidance of <a href="https://math.iitm.ac.in/sivaambi">Dr. Sivaram Ambikasaran</a>.</p>-->
 <p>I am MD Karimulla Haque, a passionate mathematics enthusiast with a deep interest in exploring mathematical theories, solving complex problems, and applying mathematical principles to real-world challenges.</p>
 <p>I completed my <a href="https://math.iitm.ac.in/alumni.php#:~:text=MD%20Karimulla%20Haque,MA23C021">postgraduate</a> studies at the <a href="https://www.iitm.ac.in/">Indian Institute of Technology Madras</a>, Chennai and my <a href="https://maulanaazadcollegekolkata.ac.in/past-students-performance.php#:~:text=2025%3A%20AIR%202680-,Md%20Karimulla%20Haque,-JAM%202023%3A%20AIR">undergraduate</a> studies at the <a href="https://maulanaazadcollegekolkata.ac.in/">Maulana Azad College</a>, Kolkata.</p>
-<!--<h2 id="about-me">Research interests</h2>
-<p>Computational Mathematics, Applied Mathematics</p>-->
-<!--<p>Cryptology, Computational Mathematics</p>-->
-	
-	
-
-
 </div>
 
-        </div>  <style>
+        </div>    <style>
     #lastUpdated {
-      font-size: medium;  
+      font-size: medium;    
     }
   </style>
-  <!--
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-      const lastModified = new Date(document.lastModified);
-      const day = String(lastModified.getDate()).padStart(2, '0');
-      const month = String(lastModified.getMonth() + 1).padStart(2, '0');
-      const year = String(lastModified.getFullYear()).slice(-2);
-      
-      const formattedDateTime = `${day}.${month}.${year}`;
-      
-      const lastUpdatedElement = document.getElementById('lastUpdated');
-      lastUpdatedElement.innerText = 'Last Updated: ' + formattedDateTime;
-    });
-  </script>
-  -->
-
-
-</div>
+  </div>
     </div>
     <div id="footer" class="mb-5">
       <hr>
@@ -241,18 +209,30 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('theme');
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+
         if (savedTheme) {
+          // If a theme is saved in local storage, use it
           body.classList.add(savedTheme);
           themeToggleBtn.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
         } else {
-          body.classList.add('light-mode');
-          themeToggleBtn.textContent = '🌙';
+          // If no theme is saved, check the user's system preference
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            themeToggleBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'dark-mode'); // Save the preference for consistency
+          } else {
+            body.classList.add('light-mode');
+            themeToggleBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'light-mode'); // Save the preference for consistency
+          }
         }
       }
+      
       // Toggle between light and dark themes
       function toggleTheme() {
         const body = document.body;
         const themeToggleBtn = document.getElementById('theme-toggle');
+        
         if (body.classList.contains('dark-mode')) {
           body.classList.replace('dark-mode', 'light-mode');
           localStorage.setItem('theme', 'light-mode');
@@ -263,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
           themeToggleBtn.textContent = '☀️';
         }
       }
+      
       // Initialize theme on page load
       loadTheme();
     </script>
